@@ -11,6 +11,7 @@ class Form extends Component {
         event.preventDefault();
         const { onAdd } = this.props;
         onAdd({id: uuidv4(), description: event.target.description.value})
+        event.target.reset();
     }
 
     render() {

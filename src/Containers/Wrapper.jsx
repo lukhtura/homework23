@@ -23,15 +23,14 @@ class Wrapper extends Component {
 
     deleteItem = (id) => {
         const { items } = this.state;
-        this.setState({
-            items: items.forEach(function (item, i) {
-                if (item.id === id) {
-                    items.splice(i, 1);
-                    return items
-                };
-            })
+        items.forEach(function (item, i) {
+            if (item.id === id) {
+                items.splice(i, 1)
+            }
         })
-        console.log({ items })
+        this.setState({
+            items: items
+        })
     }
 
     render() {
