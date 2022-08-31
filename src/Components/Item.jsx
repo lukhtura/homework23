@@ -5,9 +5,14 @@ import Button from './Button';
 
 class Item extends Component {
 
+    handleDelete = () => {
+        const { id, onDelete } = this.props;
+        onDelete(id)
+    }
+
 
     render() {
-        const { description, onDelete } = this.props;
+        const { description } = this.props;
         
         return (
             <div className="todo-item js--todo-item">
@@ -15,7 +20,7 @@ class Item extends Component {
                     <input type="checkbox" className="js--complete" />
                     <p className="todo-item-desc" description="hello" >{description}</p>
                 </label>
-                <Button buttonText="Delete" onClick={ onDelete } />
+                <Button buttonText="Delete" onClick={ this.handleDelete } />
             </div>
         )
     }

@@ -14,15 +14,24 @@ class Wrapper extends Component {
 
     }
 
-    addItem({ id, description }) {
+    addItem = ({ id, description }) => {
         const { items } = this.state;
         this.setState({
             items: [...items, { id, description }]
         })
     }
 
-    removeItem = () => {
-        console.log(this)
+    deleteItem = (id) => {
+        const { items } = this.state;
+        this.setState({
+            items: items.forEach(function (item, i) {
+                if (item.id === id) {
+                    items.splice(i, 1);
+                    return items
+                };
+            })
+        })
+        console.log({ items })
     }
 
     render() {
@@ -30,18 +39,18 @@ class Wrapper extends Component {
         return (
             <div className="container">
                 <h1>TODO</h1>
-                <Form onAdd={this.addItem.bind(this)} />
+                <Form onAdd={this.addItem} />
                 <br />
                 <h2>TODOS</h2>
                 <br />
                 <hr />
                 <div className="todo-wrapper">
-                    {items.map(item => 
-                    <Item 
-                    key={item.id} 
-                    id={item.id} 
-                    description={item.description}
-                    onDelete={this.removeItem}/>)}
+                    {items.map(item =>
+                        <Item
+                            key={item.id}
+                            id={item.id}
+                            description={item.description}
+                            onDelete={this.deleteItem} />)}
                 </div>
             </div>
         )
