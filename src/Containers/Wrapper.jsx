@@ -9,20 +9,16 @@ class Wrapper extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            items:[{id: 1, description: "Hello"}, {id: 2, description: "Hello 2"}, {id: 3, description: "Hello 3"}]
+            items: [{ id: 1, description: "Hello" }, { id: 2, description: "Hello 2" }, { id: 3, description: "Hello 3" }]
         }
 
     }
 
-    addItem({id, description}) {
+    addItem({ id, description }) {
         const { items } = this.state;
-        this.setState( {
-            items: [...items, {id, description}]
+        this.setState({
+            items: [...items, { id, description }]
         })
-    }
-
-    testClick() {
-        console.log("it's from wrapper")
     }
 
     render() {
@@ -36,7 +32,7 @@ class Wrapper extends Component {
                 <br />
                 <hr />
                 <div className="todo-wrapper">
-                    {items.map(item => <Item key={item.id} id={item.id} description={item.description} removeItem={this.testClick.bind(this)}/>)}
+                    {items.map(item => <Item key={item.id} id={item.id} description={item.description}/>)}
                 </div>
             </div>
         )
