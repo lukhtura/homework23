@@ -3,8 +3,8 @@ import { Component } from 'react';
 
 class Button extends Component {
     render() {
-        const { buttonText, onDelete} = this.props;
-        return <button className="form-button" onClick={ onDelete } >{ buttonText } </button>
+        const { buttonText, onClick} = this.props;
+        return <button className="form-button" onClick={ onClick } >{ buttonText } </button>
     };
 };
 

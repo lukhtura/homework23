@@ -21,6 +21,10 @@ class Wrapper extends Component {
         })
     }
 
+    removeItem = () => {
+        console.log(this)
+    }
+
     render() {
         const { items } = this.state;
         return (
@@ -32,7 +36,12 @@ class Wrapper extends Component {
                 <br />
                 <hr />
                 <div className="todo-wrapper">
-                    {items.map(item => <Item key={item.id} id={item.id} description={item.description}/>)}
+                    {items.map(item => 
+                    <Item 
+                    key={item.id} 
+                    id={item.id} 
+                    description={item.description}
+                    onDelete={this.removeItem}/>)}
                 </div>
             </div>
         )
