@@ -34,7 +34,6 @@ const Wrapper = () => {
     const editItem = (id) => {
         items.forEach((item, i) => {
             if (item.id === id) {
-                console.log({Form})
                 return item;
             }
             localStorage.setItem('items', JSON.stringify(items));
