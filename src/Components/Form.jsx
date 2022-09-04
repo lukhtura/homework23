@@ -1,27 +1,23 @@
 //Core
-import { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 //Parts
 import Button from '../Components/Button';
 
+const Form = (props) => {
 
-class Form extends Component {
-
-    handleAdd(event) {
+    const handleAdd = (event) => {
         event.preventDefault();
-        const { onAdd } = this.props;
-        onAdd({id: uuidv4(), description: event.target.description.value})
+        const { onAdd } = props;
+        onAdd({ id: uuidv4(), description: event.target.description.value });
         event.target.reset();
     }
 
-    render() {
-        return (
-            <form action="#" className="form" onSubmit={this.handleAdd.bind(this)}>
-                <input type="text" name="description" className="form-input" onChange={ this.handleChange }/>
-                <Button buttonText="Add" onClick={ this.handleSubmit }/>
-            </form>
-        );
-    }
+    return (
+        <form action="#" className="form" onSubmit={handleAdd}>
+            <input type="text" name="description" className="form-input" />
+            <Button buttonText="Add"/>
+        </form>
+    );
 };
 
 export default Form;

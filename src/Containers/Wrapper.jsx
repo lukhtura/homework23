@@ -1,59 +1,78 @@
 //Core
-import { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 //Parts
 import Form from "../Components/Form";
 import Item from '../Components/Item';
 
+const Wrapper = () => {
+    const [items, setItems] = useState([]);
 
-class Wrapper extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            items: [{ id: 1, description: "Hello" }, { id: 2, description: "Hello 2" }, { id: 3, description: "Hello 3" }]
-        }
+    useEffect(() => {
+        setItems(
+            JSON.parse(localStorage.getItem('items')) || []
+        )
+    }, []);
 
+    const addItem = ({ id, description }) => {
+        const newItems = [...items, { id, description }];
+        setItems(newItems);
+        localStorage.setItem('items', JSON.stringify(newItems));
+    };
+
+    const updateItem = ({ id, checked }) => {
+        const updateItems = items.map(item => {
+            if (item.id === id) {
+                item.checked = checked;
+            }
+            return item;
+        });
+        setItems(updateItems);
+        localStorage.setItem('items', JSON.stringify(updateItems));
+    };
+
+    
+    const editItem = (id) => {
+        items.forEach((item, i) => {
+            if (item.id === id) {
+                console.log({Form})
+                return item;
+            }
+            localStorage.setItem('items', JSON.stringify(items));
+            setItems(items);
+        });
     }
 
-    addItem = ({ id, description }) => {
-        const { items } = this.state;
-        this.setState({
-            items: [...items, { id, description }]
-        })
-    }
-
-    deleteItem = (id) => {
-        const { items } = this.state;
-        items.forEach(function (item, i) {
+    const deleteItem = (id) => {
+        items.forEach((item, i) => {
             if (item.id === id) {
                 items.splice(i, 1)
             }
-        })
-        this.setState({
-            items: items
-        })
-    }
+            localStorage.setItem('items', JSON.stringify(items));
+            setItems(items);
+        });
+    };
 
-    render() {
-        const { items } = this.state;
-        return (
-            <div className="container">
-                <h1>TODO</h1>
-                <Form onAdd={this.addItem} />
-                <br />
-                <h2>TODOS</h2>
-                <br />
-                <hr />
-                <div className="todo-wrapper">
-                    {items.map(item =>
-                        <Item
-                            key={item.id}
-                            id={item.id}
-                            description={item.description}
-                            onDelete={this.deleteItem} />)}
-                </div>
+    return (
+        <div className="container">
+            <h1>TODO</h1>
+            <Form onAdd={addItem} />
+            <br />
+            <h2>TODOS</h2>
+            <br />
+            <hr />
+            <div className="todo-wrapper">
+                {items.map(item =>
+                    <Item
+                        key={item.id}
+                        id={item.id}
+                        description={item.description}
+                        checked={item.checked}
+                        onDelete={deleteItem}
+                        onUpdate={updateItem}
+                        onEdit={editItem} />)}
             </div>
-        )
-    }
+        </div>
+    )
 }
 
 export default Wrapper;
