@@ -40,7 +40,7 @@ body {
 
 .todo-item {
     display: flex;
-    background-color: #ffff699e;
+    background-color: yellow;
     padding: 10px;
     border-radius: 10px;
     border: 1px solid;
@@ -48,9 +48,15 @@ body {
     align-items: center;
 }
 
+
 .todo-item-desc {
+    background-color: yellow;
+    max-width: 500px;
+    margin: 0 10px;
     flex-grow: 1;
-    padding-left: 10px;
+    padding: 0 10px;
+    border: none;
+    resize: none
 }
 
 .todo-item-desc-line-through .todo-item-desc {

@@ -14,8 +14,8 @@ const Item = (props) => {
     }
 
     const handleChecked = () => {
-        const { id, updateItem, checked } = props;
-        updateItem({ id, checked: !checked });
+        const { id, onUpdate, checked } = props;
+        onUpdate({ id, checked: !checked });
     };
 
     const { description, checked } = props;
@@ -24,7 +24,8 @@ const Item = (props) => {
         <div className="todo-item js--todo-item">
             <label className="todo-label">
                 <input type="checkbox" defaultChecked={checked} onClick={handleChecked} />
-                <p className="todo-item-desc" description="hello" >{description}</p>
+                <input type="text" className="todo-item-desc" defaultValue={description}/>
+                {/* <p className="todo-item-desc" description="hello" >{description}</p> */}
             </label>
             <Button buttonText="Edit" onClick={handleEdit} />
             <Button buttonText="Delete" onClick={handleDelete} />

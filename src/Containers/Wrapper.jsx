@@ -30,26 +30,11 @@ const Wrapper = () => {
         localStorage.setItem('items', JSON.stringify(updateItems));
     };
 
-    
-    const editItem = (id) => {
-        items.forEach((item, i) => {
-            if (item.id === id) {
-                return item;
-            }
-            localStorage.setItem('items', JSON.stringify(items));
-            setItems(items);
-        });
-    }
-
     const deleteItem = (id) => {
-        items.forEach((item, i) => {
-            if (item.id === id) {
-                items.splice(i, 1)
-            }
-            localStorage.setItem('items', JSON.stringify(items));
-            setItems(items);
-        });
-    };
+        const updateItems = items.filter(item => item.id !== id);
+        localStorage.setItem('items', JSON.stringify(updateItems));
+        setItems(updateItems);
+    }
 
     return (
         <div className="container">
@@ -67,8 +52,7 @@ const Wrapper = () => {
                         description={item.description}
                         checked={item.checked}
                         onDelete={deleteItem}
-                        onUpdate={updateItem}
-                        onEdit={editItem} />)}
+                        onUpdate={updateItem} />)}
             </div>
         </div>
     )
