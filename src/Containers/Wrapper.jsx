@@ -19,6 +19,18 @@ const Wrapper = () => {
         localStorage.setItem('items', JSON.stringify(newItems));
     };
 
+    const saveItem = ({id}, description) => {
+        const updatedItems = items.map(function (item) {
+            if (item.id === id) {
+                item.description = description;
+            }
+            return item;
+        });
+
+        setItems(updatedItems);
+        localStorage.setItem('items', JSON.stringify(updatedItems));
+    };
+
     const updateItem = ({ id, checked }) => {
         const updateItems = items.map(item => {
             if (item.id === id) {
@@ -52,7 +64,8 @@ const Wrapper = () => {
                         description={item.description}
                         checked={item.checked}
                         onDelete={deleteItem}
-                        onUpdate={updateItem} />)}
+                        onUpdate={updateItem} 
+                        onSave={saveItem}/>)}
             </div>
         </div>
     )
