@@ -19,16 +19,12 @@ body {
 .form-button  {
     width: 65px;
     height: 40px;
+    padding: 10px;
 }
 
 .form-input {
     flex-grow: 1;
     padding: 10px;
-}
-
-.form-button {
-    padding: 10px;
-
 }
 
 .container {
@@ -63,7 +59,6 @@ body {
     text-decoration: line-through;
 }
 
-
 .todo-label {
     display: flex;
     flex-grow: 1;
@@ -74,4 +69,10 @@ body {
     flex-grow: 1;
     padding: 0 10px;
     border-radius: 5px;
+}
+
+.error {
+    color: red;
+    font-weight: 700;
+    margin-left: -120px;
 }

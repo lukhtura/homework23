@@ -1,10 +1,10 @@
 //Core
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-//Parts
-import Wrapper from './Containers/Wrapper'
+// //Parts
+import App from './Containers/App'
 //Styles
 import './main.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<Wrapper/>);
+root.render(<App/>);

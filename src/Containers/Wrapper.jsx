@@ -1,7 +1,7 @@
 //Core
 import React, { useState, useEffect } from 'react';
 //Parts
-import Form from "../Components/Form";
+import NewForm from "../Components/NewForm";
 import Item from '../Components/Item';
 
 const Wrapper = () => {
@@ -51,7 +51,7 @@ const Wrapper = () => {
     return (
         <div className="container">
             <h1>TODO</h1>
-            <Form onAdd={addItem} />
+            <NewForm onAdd={addItem} />
             <br />
             <h2>TODOS</h2>
             <br />
